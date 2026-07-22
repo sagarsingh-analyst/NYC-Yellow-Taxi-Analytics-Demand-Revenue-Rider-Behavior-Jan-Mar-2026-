@@ -19,7 +19,7 @@ The objective was to transform raw trip-level data into actionable business insi
 
 The project follows a complete analytics workflow:
 
-```text
+
 Raw Data
     ↓
 Data Quality & Cleaning
@@ -36,5 +36,5 @@ Forecasting
     ↓
 Power BI Dashboard
     ↓
-Business Insights & Recommendations```
+Business Insights & Recommendatio
 
