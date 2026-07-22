@@ -40,6 +40,7 @@ Business Insights & Recommendatio
 
 
 📌 Dashboard Preview
+```
 ![Home](Screenshots/Screenshot80.png)
 
 ![Executive Summary](Screenshots/Screenshot81.png)
@@ -47,6 +48,7 @@ Business Insights & Recommendatio
 ![Operations](Screenshots/Screenshot82.png)
 
 ![Revenue](Screenshots/Screenshot83.png)
+```
 
 🎯 Business Problem
 
