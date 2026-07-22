@@ -40,7 +40,9 @@ Business Insights & Recommendatio
 
 
 📌 Dashboard Preview
-```
+
+---
+
 ![Home](Screenshots/Screenshot80.png)
 
 ![Executive Summary](Screenshots/Screenshot81.png)
@@ -48,8 +50,8 @@ Business Insights & Recommendatio
 ![Operations](Screenshots/Screenshot82.png)
 
 ![Revenue](Screenshots/Screenshot83.png)
-```
 
+---
 🎯 Business Problem
 
 A taxi business generates millions of trip records, but raw data alone does not provide clear answers to important operational and revenue questions.
