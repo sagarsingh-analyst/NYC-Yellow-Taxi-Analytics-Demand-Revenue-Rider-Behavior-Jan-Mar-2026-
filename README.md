@@ -36,7 +36,7 @@ Forecasting
     ↓
 Power BI Dashboard
     ↓
-Business Insights & Recommendations
+Business Insights & Recommendations```
 📌 Dashboard Preview
 ![Home](Screenshots/Screenshot80.png)
 
