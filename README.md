@@ -1,730 +1,215 @@
-# 🚕 NYC Yellow Taxi Analytics
+# NYC Yellow Taxi Performance Analytics
+### End-to-End Data Pipeline | Statistical Inference | Demand Forecasting | BI Dashboard
 
-### From 11M+ Taxi Trips to Actionable Business Insights
-
-> An end-to-end data analytics project analyzing NYC Yellow Taxi trip data using SQL, Python, statistical analysis, time-series forecasting, and Power BI to uncover demand patterns, revenue concentration, geographic performance, and operational insights.
-
----
-
-## 📊 Project Overview
-
-This project analyzes approximately **11.08 million NYC Yellow Taxi trips** collected between **January and March 2026**.
-
-The objective was to transform raw trip-level data into actionable business insights by combining:
-
-- **MySQL** for data preparation and SQL analysis
-- **Python** for exploratory data analysis and statistical testing
-- **Time-Series Analysis** for demand decomposition and forecasting
-- **Power BI** for interactive business intelligence and dashboard reporting
-
-The project follows a complete analytics workflow:
-
-
-Raw Data
-    ↓
-Data Quality & Cleaning
-    ↓
-SQL Analysis
-    ↓
-Exploratory Data Analysis
-    ↓
-Statistical Hypothesis Testing
-    ↓
-Time-Series Analysis
-    ↓
-Forecasting
-    ↓
-Power BI Dashboard
-    ↓
-Business Insights & Recommendatio
-
-
-📌 Dashboard Preview
+**Author:** Sagar Singh
+**Period Covered:** January – March 2026
+**Stack:** MySQL 8.0 → Python (pandas, statsmodels, scikit-learn) → Power BI
 
 ---
 
-![Home](Screenshots/Screenshot80.png)
+## 1. Project Overview
 
-![Executive Summary](Screenshots/Screenshot81.png)
+This project turns three months of raw NYC TLC Yellow Taxi trip records into a decision-ready analytics product. It covers the full lifecycle of a real-world analytics engagement:
 
-![Operations](Screenshots/Screenshot82.png)
+1. **Data Engineering** — ingesting ~10M+ raw trip records and a taxi zone reference table into MySQL, cleaning and validating them, and modeling them into query-ready views.
+2. **SQL Analytics** — twelve production-style business queries covering trends, growth, zone economics, demand patterns, and anomaly detection.
+3. **Statistical Analysis** — a hypothesis-testing framework answering six specific business questions with proper assumption checks, effect sizes, and multiple-comparison correction.
+4. **Time-Series Forecasting** — an ARIMA/SARIMA model to forecast near-term daily trip volume, with residual diagnostics and a business-facing recommendation.
+5. **BI Dashboard** — a 4-page Power BI report (Home, Executive Summary, Operations, Revenue & Behavior) for stakeholder consumption.
 
-![Revenue](Screenshots/Screenshot83.png)
+**Final dataset after cleaning:** 10,384,737 trips (Jan 1 – Mar 31, 2026).
 
 ---
-🎯 Business Problem
-
-A taxi business generates millions of trip records, but raw data alone does not provide clear answers to important operational and revenue questions.
-
-This analysis focuses on answering:
-
-When is taxi demand highest?
-How does demand vary by hour, day, and month?
-Which pickup zones generate the most revenue?
-How concentrated is revenue among the top-performing locations?
-Which routes contribute most to business performance?
-How do fares vary by distance, borough, and rate type?
-Are observed differences statistically significant?
-Can short-term taxi demand be forecasted?
-
-The ultimate goal is to support better:
-
-Driver allocation
-Operational planning
-Geographic prioritization
-Revenue monitoring
-Demand forecasting
-
-📂 Data Source & Dataset Overview
-
-The project uses NYC Yellow Taxi trip data and taxi zone lookup information.
-
-Dataset Summary
-Metric	Value
-Analysis Period	January – March 2026
-Raw Records	11.08M
-Cleaned Records	10.38M
-Records Removed	6.25%
-Pickup Zones	259
-Total Revenue	$308.8M
-
-📖 Data Dictionary
-
-Column / Feature	Description
-tpep_pickup_datetime	Date and time when the trip started
-tpep_dropoff_datetime	Date and time when the trip ended
-passenger_count	Number of passengers
-trip_distance	Distance travelled during the trip
-RatecodeID	Rate code used for the trip
-PULocationID	Pickup location identifier
-DOLocationID	Drop-off location identifier
-payment_type	Payment method used
-fare_amount	Base fare amount
-tip_amount	Tip amount
-tolls_amount	Toll amount
-total_amount	Total trip revenue
-pickup_borough	Pickup borough
-pickup_zone	Pickup zone
-dropoff_borough	Drop-off borough
-dropoff_zone	Drop-off zone
-trip_duration	Calculated trip duration
-tip_percentage	Calculated tip percentage
-day_of_week	Day on which the trip occurred
-hour	Hour of the day
-day_type	Weekday or Weekend classification
-
-🛠️ Tech Stack & Tools
-
-Database & SQL
-MySQL
-CTEs
-Window Functions
-Views
-Joins
-Aggregations
-Indexing
-Python
-Python
-Pandas
-NumPy
-SciPy
-Statsmodels
-Scikit-learn
-Data Visualization
-Matplotlib
-Seaborn
-Power BI
-Statistical Analysis
-Welch's t-test
-Paired t-test
-Wilcoxon signed-rank test
-ANOVA
-Welch ANOVA
-Chi-Square Test
-Effect Size Analysis
-Confidence Intervals
-Multiple Testing Correction
-Time-Series Analysis
-STL Decomposition
-ADF Test
-KPSS Test
-ACF
-PACF
-ARIMA
-SARIMA
-Ljung-Box Test
-ARCH Test
-🔄 Methodology
-1. Data Cleaning & Quality Assessment
-
-The raw data was evaluated for data-quality issues, including:
-
-Missing values
-Invalid fares
-Negative values
-Zero-value transactions
-Invalid trip distances
-Unrealistic trip distances
-Invalid trip durations
-Negative tips
-Invalid location records
-
-The cleaned dataset was then enriched with taxi zone information.
-
-Feature Engineering
-
-Additional analytical features were created:
-
-Trip Date
-Month
-Day of Week
-Weekday / Weekend
-Hour of Day
-Trip Duration
-Tip Percentage
-Pickup Borough
-Drop-off Borough
-Pickup Zone
-Drop-off Zone
-Rate Type
-Payment Type
-2. SQL Analysis
-
-MySQL was used to perform structured analysis and create reusable analytical outputs.
-
-Key SQL Analysis
-Daily trip and revenue trends
-Monthly performance comparison
-Top pickup zones
-Top routes
-Revenue concentration
-Rate-type analysis
-Payment-type analysis
-Rolling averages
-Ranking analysis
-Demand anomaly detection
-SQL Techniques Used
-CTEs
-Window Functions
-RANK()
-ROW_NUMBER()
-LAG()
-Rolling Averages
-Conditional Aggregation
-Views
-Indexing
-3. Exploratory Data Analysis
-
-Python was used to explore:
-
-Demand trends
-Revenue distribution
-Trip-distance behavior
-Trip-duration patterns
-Geographic performance
-Hourly demand
-Weekday vs weekend behavior
-Payment methods
-Rate types
-4. Statistical Hypothesis Testing
-
-The analysis was designed around business questions.
-
-Examples include:
-
-Weekday vs Weekend
-
-Do taxi performance metrics differ significantly between weekdays and weekends?
-
-Payment Methods
-
-Does tip percentage differ across payment methods?
-
-Borough Analysis
-
-Does average trip distance differ across boroughs?
-
-Monthly Demand
-
-Did taxi demand change significantly between months?
-
-Categorical Association
-
-Are categorical variables statistically associated with payment behavior?
-
-The analysis considered:
-
-Statistical Significance
-        +
-Effect Size
-        +
-Confidence Intervals
-        +
-Business Significance
-Effect Sizes Used
-Cohen's d
-Eta-squared
-Omega-squared
-Cramér's V
-Multiple Testing Corrections
-Bonferroni Correction
-Benjamini-Hochberg FDR Correction
-5. Time-Series Analysis & Forecasting
-
-Daily taxi demand was analyzed using:
-
-Daily Demand
-      ↓
-STL Decomposition
-      ↓
-Trend + Seasonality + Residual
-      ↓
-Stationarity Testing
-      ↓
-ACF / PACF
-      ↓
-ARIMA / SARIMA
-      ↓
-Forecast Evaluation
-      ↓
-Residual Diagnostics
-Forecast Evaluation Metrics
-MAE
-RMSE
-MAPE
-Diagnostic Tests
-Ljung-Box Test
-ARCH Test
-Residual Autocorrelation
-ACF
-PACF
-Q-Q Plot
 
-Since the dataset covers approximately three months, the forecasting analysis is focused on short-term demand planning rather than long-term annual seasonality.
+---
+
+## 2. Dataset Details
+
+| Attribute | Detail |
+|---|---|
+| **Source** | NYC Taxi & Limousine Commission (TLC) Trip Record Data — Yellow Taxi |
+| **Reference data** | Official TLC `taxi_zone_lookup.csv` (LocationID → Borough, Zone, Service Zone) |
+| **Raw files ingested** | `yellow_tripdata_2026-01.csv`, `yellow_tripdata_2026-02.csv`, `yellow_tripdata_2026-03.csv` |
+| **Time period** | January 1, 2026 – March 31, 2026 (90 days) |
+| **Raw row count (pre-cleaning)** | ~10.4M+ trips across 3 monthly files |
+| **Final row count (post-cleaning)** | 10,384,737 trips |
+| **Grain** | One row per taxi trip |
+| **Key columns** | `tpep_pickup_datetime`, `tpep_dropoff_datetime`, `passenger_count`, `trip_distance`, `RatecodeID`, `PULocationID`, `DOLocationID`, `payment_type`, `fare_amount`, `tip_amount`, `tolls_amount`, `total_amount`, `congestion_surcharge`, `Airport_fee` |
+| **Derived columns** | `trip_month` (YYYY-MM, from pickup datetime), `pickup_borough`/`pickup_zone`, `dropoff_borough`/`dropoff_zone` (joined from zone lookup) |
+| **Storage** | MySQL 8.0, loaded via `LOAD DATA LOCAL INFILE`, indexed on `PULocationID`, `DOLocationID`, pickup datetime, and `trip_month` |
+| **Cleaning applied** | Removed trips with zero/negative fares, fares exceeding total amount, distances outside 0–100 miles, durations outside 1 min–6 hrs, and unknown zone codes (264, 265) |
+| **Data quality checks** | Confirmed 0 of 90 calendar days had missing data; verified no negative `total_amount` values remained post-cleaning |
+
+---
+
+## 3. Business Questions Answered
+
+| # | Question | Method |
+|---|----------|--------|
+| 1 | Does weekend revenue per trip differ from weekday revenue? | Welch's t-test + Cohen's d |
+| 2 | Does tipping % vary by payment method? | Welch's ANOVA + Tukey HSD |
+| 3 | Do trip distances vary by pickup borough? | Welch's ANOVA + eta² |
+| 4 | Is month-over-month volume growth real or noise? | t-test + Wilcoxon signed-rank |
+| 5 | Is fare amount normally distributed? | D'Agostino-Pearson + Anderson-Darling |
+| 6 | Does payment preference vary by borough? | Chi-square + Cramér's V |
+| 7 | What will daily trip volume look like in the next 14 days? | ARIMA vs SARIMA grid search |
+
+---
+
+## 4. Data Pipeline (MySQL)
+
+- **Source data:** NYC TLC Yellow Taxi trip records (Jan–Mar 2026, loaded as `yellow_trips1/2/3`) and the official `taxi_zone_lookup` reference table.
+- **Ingestion:** bulk-loaded via `LOAD DATA LOCAL INFILE`, with `trip_month` derived and indexed alongside `PULocationID`, `DOLocationID`, and pickup datetime for query performance.
+- **Cleansing rules applied** (`yellow_trips_clean` view):
+  - Trips restricted to the reporting months (Jan–Mar 2026)
+  - `fare_amount`, `total_amount` > 0, and `fare_amount ≤ total_amount`
+  - `0 < trip_distance < 100` miles
+  - Non-negative tips and tolls
+  - Trip duration between 1 minute and 6 hours
+  - Unknown/N/A zone codes (264, 265) excluded from both pickup and drop-off
+- **Modeling:** `yellow_trips_final` view joins cleaned trips to `taxi_zone_lookup` twice (pickup and drop-off) to attach borough and zone names for reporting.
+- **Analytics layer:** 12 SQL queries covering daily trend, MoM growth, top revenue zones per month, day×hour demand, tip % by borough/payment, weekday vs weekend, rate code mix, top O-D routes, revenue concentration, rolling 7-day anomaly detection (z-score), payment mix, and zone-level MoM trend.
+
+Full SQL is in [`NYC.sql`](./NYC.sql).
+
+---
+
+## 5. Statistical Findings
+
+| Test | Result | Effect Size | Business Takeaway |
+|------|--------|--------------|--------------------|
+| Weekday vs Weekend revenue | Significant (p<0.001) | d = 0.077 (negligible) | Weekend fares run ~5% higher per trip, but the difference is too small to justify a differentiated pricing strategy |
+| Tip % by payment type | Significant (p<0.001) | η² = 0.034 (small) | Credit card trips tip ~24.9% on average vs ~0% for cash; there's a clear incentive to promote card payments |
+| Trip distance by borough | Significant (p<0.001) | η² = 0.366 (large) | Queens trips average ~11 miles vs ~2.5 miles in Manhattan — fleet mix and vehicle allocation should differ by borough |
+| Feb vs Mar volume | Not significant after correction | d = -0.46 (small) | Month-over-month volume is statistically stable; plan capacity on a steady baseline |
+| Fare amount normality | Non-normal (skew=2.01, kurtosis=5.67) | — | Report fares using the median, not the mean; use non-parametric tests downstream |
+| Payment preference by borough | Significant (p<0.001) | Cramér's V = 0.103 (small) | Cash acceptance should be tuned locally by borough rather than standardized citywide |
+
+All six tests were evaluated under a Bonferroni-corrected significance threshold (α = 0.0083), with the Benjamini–Hochberg FDR correction shown alongside for comparison. Five of six tests remained significant after correction.
+
+Full methodology, assumption checks, and code are in [`NYC.ipynb`](./NYC.ipynb).
+
+---
+
+## 6. Key Insights
+
+- **Volume is airport- and Manhattan-heavy.** JFK is the single highest-revenue pickup zone ($29.66M), and the top 10 zones alone account for **37.9% of total revenue** out of 259 active zones — demand is highly concentrated, not evenly spread across the city.
+- **Saturday, evening hours drive peak demand.** Saturday is the busiest day and hour 18 (6 PM) is the peak hour, with ~117K trips in that single hour bucket — a clear signal for driver shift scheduling.
+- **Borough economics differ structurally, not just by chance.** Manhattan trips are short (~2.5 mi) and frequent; Queens trips are long (~11 mi) and less frequent — this is a large effect (η² = 0.366), meaning fleet type and driver incentives should genuinely differ by borough rather than being city-wide policy.
+- **Card payments are both more common and far more lucrative in tips.** Credit card trips tip ~24.9% on average vs effectively 0% for cash — but cash still holds meaningfully in some boroughs, so a blanket "go cashless" push would hurt local demand in those zones (Cramér's V = 0.103).
+- **Revenue is stable but volume is forecast to soften.** Feb→Mar volume showed no statistically significant change after correction, yet the ARIMA model forecasts an **~11% pullback** over the next 14 days — the near-term risk is a demand dip, not a demand spike.
+- **Fares are right-skewed, not normal** (skew = 2.01) — a small number of high-value trips (e.g. JFK/Newark airport runs at ~$70 avg fare vs ~$16 for standard rides) pull the mean well above the median, so any average-fare KPI without a median alongside it is misleading.
+- **Weekend "premium" pricing isn't justified by the data** — the $1.49 weekend vs weekday fare gap is statistically real (p<0.001, huge sample) but practically negligible (Cohen's d = 0.077), a good example of why effect size — not just p-value — has to drive the business decision at this scale.
+
+---
+
+## 7. Functions & Methods Used
 
-💡 Key Insights & Visualizations
-1️⃣ Revenue is Highly Concentrated Among Top Pickup Zones
+**SQL (MySQL 8.0)**
+| Category | Functions / Techniques |
+|---|---|
+| Ingestion | `LOAD DATA LOCAL INFILE`, bulk CSV load with `FIELDS TERMINATED BY`, `IGNORE ROWS` |
+| Data prep | `DATE_FORMAT`, `UPDATE ... WHERE`, `CREATE INDEX` on join/filter columns |
+| Cleaning | View-based filtering (`CREATE OR REPLACE VIEW`) with range checks, `NOT IN`, `TIMESTAMPDIFF` |
+| Joins & modeling | `JOIN` for zone enrichment, `UNION ALL` to stack monthly tables |
+| Window functions | `LAG()`, `RANK()`, `AVG() OVER`, `STDDEV() OVER` with `ROWS BETWEEN ... PRECEDING` |
+| Aggregation | `GROUP BY`, `COUNT`, `SUM`, `ROUND`, `NULLIF` (safe division) |
+| Date logic | `DAYNAME`, `HOUR`, `DAYOFWEEK`, `FIELD()` for custom weekday ordering |
+| Export | `INTO OUTFILE` for pushing the cleaned dataset to Python/Power BI |
+
+**Python (pandas, scipy, statsmodels, scikit-learn)**
+| Category | Functions / Techniques |
+|---|---|
+| Hypothesis testing | `scipy.stats.ttest_ind` (Welch's t-test), `stats.wilcoxon`, one-way & Welch's ANOVA, `pairwise_tukeyhsd` |
+| Normality checks | `normaltest` (D'Agostino-Pearson), `anderson` (Anderson-Darling), `jarque_bera` |
+| Variance checks | `levene`, `bartlett` |
+| Association | Chi-square test of independence, Cramér's V (custom calc) |
+| Multiple comparisons | `statsmodels.stats.multitest.multipletests` (Bonferroni + FDR/Benjamini-Hochberg) |
+| Effect sizes | Cohen's d, eta² (η²), omega² (ω²), Cramér's V — computed alongside every p-value |
+| Time series decomposition | `STL` (Seasonal-Trend decomposition using LOESS) |
+| Stationarity | `adfuller` (Augmented Dickey-Fuller test) |
+| Forecasting | `ARIMA`, `SARIMAX` with grid search over orders selected by AIC |
+| Residual diagnostics | `acorr_ljungbox` (autocorrelation), `het_arch` (heteroscedasticity), Jarque-Bera (normality) |
+| Forecast evaluation | `mean_absolute_error`, `mean_squared_error`, custom MAPE, 95% confidence intervals |
+| Visualization | `matplotlib`, `seaborn` (heatmaps, boxplots, Q-Q plots via `statsmodels.graphics.gofplots.qqplot`, ACF plots via `plot_acf`) |
 
-The top 10 pickup zones generated approximately:
+**Power BI**
+DAX measures for KPI cards and MoM growth %, Power Query for data shaping, page-level and report-level slicers (Month, Day Type, Borough, Rate Type), and matrix/heatmap visuals for the day×hour demand grid.
 
-💰 $117.1M in Revenue
+---
 
-This represented approximately:
+## 8. Future Improvements
 
-📊 37.92% of Total Revenue
-Business Interpretation
+- **Extend the time window.** Three months limits the forecasting model's ability to learn yearly seasonality (holidays, weather, summer/winter demand swings); a 12–24 month history would allow a proper SARIMA seasonal model or Prophet-style yearly seasonality component instead of relying on a 7-day cycle.
+- **Add weather and event data.** Joining in NOAA weather data and NYC event calendars (concerts, holidays, marathons) would likely explain a meaningful share of the daily anomalies flagged by the z-score detector, and could be added as exogenous regressors (SARIMAX) to improve MAPE beyond the current 8.76%.
+- **Automate the pipeline.** Replace the manual `LOAD DATA LOCAL INFILE` + hardcoded Windows paths with a scheduled ETL (Airflow, or even a simple Python script + cron) that pulls the latest TLC month automatically, so the dashboard refreshes without manual re-runs.
+- **Move from MySQL to a cloud warehouse.** At 10M+ rows/quarter, a column-store warehouse (BigQuery, Snowflake, or Redshift) would scale better for ad hoc analytical queries and remove the local `secure_file_priv` / local-infile friction seen in this build.
+- **Model tip behavior directly.** A regression or gradient-boosted model predicting tip % from trip distance, borough, payment type, and time-of-day could turn "tips vary by payment type" into an actionable, driver-facing tipping-likelihood score.
+- **Validate the ARIMA winner further.** Current selection is based on a single 14-day holdout; adding rolling-origin (walk-forward) cross-validation would give a more robust MAPE estimate and reduce the risk of the result being specific to that particular test window.
+- **Include green taxis and FHV (Uber/Lyft) data.** Yellow cabs are one part of NYC's for-hire vehicle market; bringing in green taxi and high-volume FHV trip records would let the analysis speak to city-wide mobility trends rather than just the yellow-cab segment.
+- **Operationalize the anomaly detector.** Wire the 7-day rolling z-score query into an alerting layer (e.g. a scheduled query + Slack/email webhook) so operations is notified of demand anomalies same-day rather than discovering them in a retrospective report.
 
-A relatively small number of pickup locations contribute a significant share of total revenue.
+---
 
-This indicates that these locations are strategically important for:
+## 9. Demand Forecast
 
-Driver allocation
-Operational planning
-Revenue monitoring
-Capacity management
-Visualization
+- **Approach:** STL decomposition to isolate trend/seasonality, ADF test for stationarity, followed by an ARIMA vs SARIMA grid search selected by AIC, validated on a 14-day out-of-sample holdout.
+- **Winning model:** ARIMA(2,1,3) — MAE ≈ 10,017 trips/day, RMSE ≈ 12,150 trips/day, **MAPE ≈ 8.76%**, outperforming the best seasonal SARIMA(0,1,1)(7) model (MAPE ≈ 13.1%).
+- **Diagnostics:** residuals pass the Ljung-Box (white noise) and ARCH (no heteroscedasticity) tests, confirming the model captures the available structure in the series.
+- **Forecast:** average of ~127,400 trips/day over the forecast horizon (±60,500 at 95% CI), representing an estimated **11% decline** versus the recent baseline.
+- **Recommendation:** plan for a moderate volume pullback — consider fleet-size flexibility or targeted rider promotions rather than assuming flat demand.
 
-2️⃣ JFK Airport is a Major Revenue-Generating Location
+---
 
-JFK Airport generated approximately:
+## 10. Power BI Dashboard
 
-💰 $29.7M in Revenue
+A 4-page interactive report built on the cleaned SQL output, designed for both executive and operational audiences.
 
-from approximately:
+**Headline metrics (Jan–Mar 2026):** 10.38M trips · $308.76M revenue · $29.73 average fare · 3.43 mile average trip distance.
 
-🚕 380,961 Trips
-Business Interpretation
+### Home
+Landing page with the top-line KPIs and navigation to the three analytical pages.
+![Home](Screenshot/Screenshot80.png)
 
-Airport activity represents an important revenue segment and should be analyzed separately from standard urban taxi demand.
+### Executive Summary
+Daily trip volume with a 7-day rolling average, daily revenue trend, month-over-month trip comparison, and a weekday vs weekend split — filterable by month and day type.
+![Executive Summary](Screenshot/Screenshot81.png)
 
-Airport trips may have different:
+### Operations (Demand View)
+Day × hour demand heatmap, top 10 pickup→drop-off routes, top revenue zones, and revenue concentration analysis — filterable by borough.
+![Operations](Screenshot/Screenshot82.png)
 
-Trip distances
-Fare values
-Demand patterns
-Operational requirements
-Visualization
+### Revenue & Behavior
+Rate code breakdown, fare vs distance by rate type, average trip duration and distance by borough, and revenue split by payment method — filterable by rate type.
+![Revenue](Screenshot/Screenshot83.png)
 
-3️⃣ Taxi Demand Varies Significantly Throughout the Day
+---
 
-Demand is not evenly distributed across all hours.
+## 11. Repository Contents
 
-Peak-hour analysis identified periods of higher demand that can support:
+| File | Description |
+|------|-------------|
+| `NYC.sql` | Full MySQL pipeline — schema, ingestion, cleaning, views, and 12 analytical queries |
+| `NYC.ipynb` | Python notebook — hypothesis testing framework, demand forecasting, diagnostic dashboard |
+| `screenshots/` | Power BI dashboard page exports referenced in this README |
+| `README.md` | This file |
 
-Driver scheduling
-Fleet allocation
-Capacity planning
-Operational decision-making
-Visualization
+---
 
-4️⃣ Statistical Significance Must Be Interpreted Carefully
+## 12. Tools & Techniques
 
-With more than 10 million observations, even small differences can become statistically significant.
+`MySQL 8.0` · `Python (pandas, numpy, scipy, statsmodels, scikit-learn)` · `Power BI (DAX, Power Query)` · Welch's t-test/ANOVA · Tukey HSD · Chi-square/Cramér's V · Bonferroni & FDR correction · STL decomposition · ARIMA/SARIMA · Residual diagnostics (Ljung-Box, Jarque-Bera, ARCH)
 
-Therefore, the analysis did not rely only on p-values.
+---
 
-Instead, it also evaluated:
+## 13. Key Business Recommendations
 
-Effect size
-Confidence intervals
-Practical business significance
+1. **Pricing:** no need for weekend-specific pricing — the effect on revenue per trip is negligible.
+2. **Payments:** actively promote credit card adoption; negotiate processing costs given the tipping upside, while preserving cash options in boroughs where it's preferred.
+3. **Fleet allocation:** position larger vehicles/longer-range supply in Queens; concentrate short-trip capacity in Manhattan.
+4. **Capacity planning:** treat month-over-month volume as stable in the short term, but plan for an ~11% forecasted decline over the next two weeks and adjust fleet size or promotions accordingly.
+5. **Reporting standards:** use median (not mean) fare in dashboards and executive reporting given the strong right-skew in fare distribution.
 
-This helps distinguish between:
+---
 
-Statistically detectable differences
-
-and:
-
-Business-relevant differences
-
-Visualization
-
-5️⃣ Short-Term Demand Forecasting Can Support Operational Planning
-
-Time-series analysis was used to identify:
-
-Trend
-Seasonality
-Autocorrelation
-Short-term demand patterns
-
-ARIMA and SARIMA models were evaluated using forecast error metrics and residual diagnostics.
-
-Visualization
-
-📊 Power BI Dashboard
-
-The Power BI report contains four analytical pages designed for business users.
-
-🏠 Page 1: Home
-
-Provides:
-
-Project overview
-Analysis period
-Key KPIs
-Navigation
-
-📈 Page 2: Executive Summary
-
-Provides a high-level view of:
-
-Total trips
-Total revenue
-Average fare
-Average trip distance
-Daily demand
-Revenue trends
-Monthly comparisons
-
-🚕 Page 3: Operations
-
-Focuses on:
-
-Peak demand hours
-Demand heatmaps
-Top pickup zones
-Top routes
-Revenue concentration
-
-💰 Page 4: Revenue & Behavior
-
-Focuses on:
-
-Rate types
-Fare vs distance
-Borough-level trip behavior
-Trip duration
-Payment methods
-
-🐍 Python Notebook Screenshots
-Data Preparation & Feature Engineering
-
-Statistical Hypothesis Testing
-
-Time-Series Decomposition & Forecasting
-
-Forecast Diagnostics
-
-🎯 Strategic Recommendations — The "So What?"
-1. Implement Demand-Based Driver Allocation
-
-Use hourly and daily demand patterns to allocate driver capacity more effectively.
-
-This could improve:
-
-Driver utilization
-Customer availability
-Peak-hour service coverage
-2. Prioritize High-Value Pickup Locations
-
-High-revenue zones and airport locations should receive focused operational monitoring.
-
-Potential actions include:
-
-Monitoring driver availability
-Tracking demand changes
-Evaluating revenue performance
-Planning capacity around peak periods
-3. Monitor Revenue Concentration
-
-Since the top 10 zones contribute a significant share of total revenue, management should track revenue concentration over time.
-
-A sudden increase in concentration may indicate:
-
-Geographic demand shifts
-Operational problems
-Changes in customer behavior
-4. Use Forecasting for Short-Term Planning
-
-Short-term demand forecasts can support:
-
-Driver scheduling
-Fleet planning
-Demand monitoring
-Capacity management
-5. Integrate External Data
-
-Future analysis should combine taxi data with:
-
-Weather
-Traffic
-Holidays
-Major events
-Airport schedules
-
-This could improve both forecasting accuracy and business interpretation.
-
-🚀 Future Improvements
-📅 Expand the Time Period
-
-Analyze multiple years of data to study:
-
-Year-over-year growth
-Annual seasonality
-Long-term trends
-Seasonal demand patterns
-🌦️ Add External Variables
-
-Integrate:
-
-Weather
-Traffic
-Events
-Holidays
-Airport activity
-
-to improve forecasting and explain demand changes.
-
-📈 Improve Forecast Validation
-
-Compare ARIMA and SARIMA against baseline models such as:
-
-Naive Forecast
-Seasonal Naive Forecast
-
-Use rolling time-series cross-validation for more robust model evaluation.
-
-🧠 Add Advanced Forecasting Models
-
-Evaluate:
-
-Prophet
-XGBoost
-LightGBM
-SARIMAX
-Ensemble Forecasting
-🔮 Add Predictive Analytics
-
-Potential extensions include:
-
-Trip fare prediction
-Demand prediction by zone
-Revenue forecasting
-Anomaly detection
-High-demand zone classification
-🏗️ Improve Data Modeling
-
-Develop a scalable star schema:
-
-                 Dim Date
-                    │
-                    │
-Dim Zone ───── Fact Trips ───── Dim Rate Type
-                    │
-                    │
-              Dim Payment Type
-
-This would improve:
-
-Data maintainability
-Query performance
-Power BI performance
-Scalability
-⚠️ Limitations
-Limited Time Period
-
-The analysis covers approximately three months.
-
-Therefore:
-
-Long-term seasonality cannot be reliably analyzed.
-Year-over-year comparisons are unavailable.
-Forecasting is limited to short-term demand planning.
-External Factors Not Included
-
-The analysis does not include:
-
-Weather
-Traffic
-Major events
-Airport schedules
-
-These factors may influence demand and revenue.
-
-Observational Data
-
-The analysis identifies patterns and associations.
-
-It does not prove causation.
-
-For example:
-
-A zone generating higher revenue does not necessarily mean that the zone alone causes higher revenue.
-
-📁 Project Structure
-NYC-Yellow-Taxi-Analytics/
-│
-├── README.md
-│
-├── SQL/
-│   └── nyc_taxi_analysis.sql
-│
-├── Python/
-│   └── nyc_taxi_analysis.ipynb
-│
-├── PowerBI/
-│   └── NYC_Yellow_Taxi_Dashboard.pbix
-│
-└── screenshots/
-    │
-    ├── powerbi_home.png
-    ├── powerbi_executive_summary.png
-    ├── powerbi_operations.png
-    ├── powerbi_revenue_behavior.png
-    │
-    ├── python_data_preparation.png
-    ├── python_hypothesis_testing.png
-    ├── python_time_series.png
-    ├── python_diagnostics.png
-    │
-    ├── revenue_concentration.png
-    ├── top_revenue_zones.png
-    ├── demand_heatmap.png
-    ├── hypothesis_testing.png
-    └── time_series_forecast.png
-▶️ How to Run / Reproduce the Project
-1. Clone the Repository
-git clone https://github.com/your-username/nyc-yellow-taxi-analytics.git
-cd nyc-yellow-taxi-analytics
-2. Install Python Dependencies
-pip install pandas numpy scipy statsmodels scikit-learn matplotlib seaborn sqlalchemy pymysql
-3. Run the SQL Analysis
-Install MySQL.
-Create the required database.
-Load the NYC Yellow Taxi data.
-Load the taxi zone lookup table.
-Run the SQL analysis script.
-4. Run the Jupyter Notebook
-jupyter notebook
-
-Open:
-
-Python/nyc_taxi_analysis.ipynb
-
-Update the data path or database connection if required.
-
-5. Open the Power BI Dashboard
-
-Open:
-
-PowerBI/NYC_Yellow_Taxi_Dashboard.pbix
-
-Refresh the data source if required.
-
-🧰 Skills Demonstrated
-
-This project demonstrates practical experience with:
-
-SQL Data Analysis
-Data Cleaning
-Exploratory Data Analysis
-Statistical Hypothesis Testing
-Effect Size Analysis
-Multiple Testing Correction
-Time-Series Analysis
-Forecasting
-Residual Diagnostics
-Power BI Dashboard Development
-DAX
-Data Modeling
-Business Intelligence
-Data Storytelling
-👤 Contact
-Sagar Singh
-
-Aspiring Data Analyst
-
-📌 Specializing in:
-
-SQL
-Python
-Power BI
-DAX
-Statistical Analysis
-Time-Series Analysis
-Business Intelligence
-Connect With Me
-💼 LinkedIn
-🐙 GitHub
-⭐ Project Summary
-
-This project demonstrates a complete end-to-end data analytics workflow:
-
-Raw Data
-    ↓
-Data Cleaning
-    ↓
-SQL Analysis
-    ↓
-Exploratory Data Analysis
-    ↓
-Statistical Testing
-    ↓
-Time-Series Forecasting
-    ↓
-Power BI Dashboard
-    ↓
-Business Insights
-    ↓
-Strategic Recommendations
-
-The project goes beyond simply creating charts.
-
-It connects:
-
-📊 Data
-
-What happened?
-
-📐 Statistics
-
-Is the difference meaningful?
-
-🔮 Forecasting
-
-What might happen next?
-
-💼 Business Intelligence
-
-What action should the business take?
+**Prepared by: Sagar Singh**
